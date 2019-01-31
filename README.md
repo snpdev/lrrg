@@ -5,46 +5,129 @@ Let's write (or re-write) the story of Little Red Riding Hood.
 
 ## Pre-requisites
 
+* Internet connection
 * Git is installed on the player's computer.
 * Fork this repo into a remote repo that all players can contribute to.
 
 ## Basic play
 
-* Three players with roles:
-  * Little Red
-  * Granny
-  * Wolf
-* Players clone this repo
-* Little Red is the maintainer, works in the master branch
-* Granny creates a branch called "granny"
-  * `git checkout -b granny`
-* Wolf creates a branch called "wolf"
-  * `git checkout -b wolf`
-* There are five turns
-* In each turn, players create 1-3 files, each having a step in their story. 
-  * Prefix file names with chapter number and step, e.g. `1.1_`
-  * Example `touch 1.1_little-red-leaves.home`
-  * No need to add file content.
-  * You can be creative with your file extension
-* After creating your files, commit to git as a chapter in their story.
-  * `git add .`
-  * `git commit -m "C1 My Chapter Name"`
-  * `git push` 
-  * `git pull`
-* After five turns, together we'll review the branch history
-  * `git checkout master`
-  * `git log --oneline --name-only`
-  * Repeat for each branch
-  * Finish off by showing the log as a graph for all branches
-  * `git log --graph --all --oneline --decorate --name-only`
-* Little Red merges the branches into master
-  * `git checkout master`
-  * `git merge granny`
-  * `git merge wolf`
+In this game, two content collaborators work on a new website “Little Red Riding Git.”
 
-## Advanced play
+In their website, they will tell the story of Little Red Riding Hood, and add a few twists.
 
-_Ideas..._
+(The game can be played by two people, or one person with two terminal sessions, simulating a multi-player experience.)
 
-* Cherry pick from branches
-* 
+One player assumes the role or Little Red, and the other Granny.
+
+Each player opens a terminal window, e.g. Git Bash.
+
+Follow the command line script below, but feel free to improvise. 
+
+Create a directory
+
+`mkdir ~/lrrg`
+
+Each player clones the forked repo, e.g.
+
+`git clone git@github.com:mygithubaccount/lrrg.git little-red`
+
+`cd little-red`
+
+And
+
+`git clone git@github.com:mygithubaccount/lrrg.git granny`
+
+`cd granny`
+
+Little Red will start first: 
+
+`touch ch1.htm`
+`ls`
+`git status`
+`vim ch1.htm`
+
+Enter:
+```
+Chapter 1
+
+<h1>Little Red Leaves Home</h1>
+
+<p>Little Re opens the door and trips over the threshold.</p>
+```
+Save and exit the editor. 
+
+Stage your changes:
+
+`git add .`
+
+`git status`
+
+`git commit -m 'Start Chapter 1’`
+
+`git status`
+
+`git push origin master`
+
+Now it's granny's turn:
+
+`git pull`
+
+`ls`
+
+`git log`
+
+`git show [sha]`
+
+`git branch -a`
+
+`git checkout -b granny`
+
+`ls`
+
+Make an update, e.g. "Little Red opens the door and slips on a banana."
+
+`code ch1.htm`
+
+Save and exit the editor. 
+
+Stage your changes:
+
+`git status`
+
+`git a .`
+
+`git status`
+
+`git commit -m 'Add more drama'`
+
+`git status`
+
+`git push`
+
+Now it's Little Red's turn
+
+`git pull`
+
+`git log`
+
+`git log --all`
+
+`git checkout granny`
+
+`git diff master granny`
+
+`git checkout master`
+
+`git merge granny`
+
+`git log`
+
+`git status` 
+
+I see my working directory is clean. This is because the merge pointed the master branch to the new commit added by Granny, and updated my working directory.
+
+`code ch1.htm`
+
+You have seen how simple it can be to work with the git CLI to perform basic version control operations in a collaboration scenario.
+
+Please continue play to practice your commands and explore new ones.
